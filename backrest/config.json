@@ -1,0 +1,86 @@
+{
+    "modno": 9,
+    "instance": "backrest",
+    "repos": [
+        {
+            "id": "local-repo",
+            "uri": "/mnt/data/restic/local-repo/",
+            "password": "**************",
+            "prunePolicy": {
+                "schedule": {
+                    "maxFrequencyDays": 10,
+                    "clock": "CLOCK_LAST_RUN_TIME"
+                },
+                "maxUnusedPercent": 10
+            },
+            "hooks": [
+                {
+                    "conditions": [
+                        "CONDITION_ANY_ERROR"
+                    ],
+                    "actionHealthchecks": {
+                        "webhookUrl": "https://hc-ping.com/e714f0fb-3e73-4add-afbf-b8860a12f433/fail",
+                        "template": "{{ .Summary }}"
+                    }
+                }
+            ],
+            "checkPolicy": {
+                "schedule": {
+                    "maxFrequencyDays": 10,
+                    "clock": "CLOCK_LAST_RUN_TIME"
+                },
+                "readDataSubsetPercent": 0
+            },
+            "commandPrefix": {},
+            "guid": "dcefb513545ba4af85cce77afb39ec3bf017e98e828e75cc444250173233c1c6"
+        }
+    ],
+    "plans": [
+        {
+            "id": "gdrive",
+            "repo": "local-repo",
+            "paths": [
+                "/mnt/data/rclone/gdrive"
+            ],
+            "retention": {
+                "policyTimeBucketed": {
+                    "hourly": 24,
+                    "daily": 7,
+                    "weekly": 4,
+                    "monthly": 12,
+                    "yearly": 3,
+                    "keepLastN": 50
+                }
+            },
+            "hooks": [
+                {
+                    "conditions": [
+                        "CONDITION_ANY_ERROR"
+                    ],
+                    "actionHealthchecks": {
+                        "webhookUrl": "https://hc-ping.com/e714f0fb-3e73-4add-afbf-b8860a12f433/fail",
+                        "template": "{{ .Summary }}"
+                    }
+                }
+            ],
+            "schedule": {
+                "cron": "30 * * * *",
+                "clock": "CLOCK_LOCAL"
+            }
+        }
+    ],
+    "auth": {
+        "users": [
+            {
+                "name": "gpol",
+                "passwordBcrypt": "********"
+            }
+        ]
+    },
+    "version": 4,
+    "sync": {
+        "identity": {
+            "keyId": "ecdsa.nmflxpwkRmA9NX7w2vwnuLVPC14GysytJFmVUVZ_N_g"
+        }
+    }
+}

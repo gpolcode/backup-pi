@@ -1,0 +1,1 @@
+30 * * * * rclone sync gdrive:/ /mnt/data/rclone/gdrive
