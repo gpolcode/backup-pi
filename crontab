@@ -1,2 +1,1 @@
-0 * * * * rclone sync gdrive:/ /mnt/data/rclone/gdrive
 0 12 * * 6 sudo apt update && sudo apt -y full-upgrade && sudo reboot
