@@ -8,5 +8,5 @@ rclone mount gdrive: /mnt/data/rclone/gdrive \
   --vfs-cache-mode full \
   --vfs-cache-max-size 1G \
   --vfs-read-ahead 128M \
-  --vfs-read-chunk-streams 16 \
-  --vfs-read-chunk-size 4M
+  --vfs-read-chunk-streams 64 \
+  --vfs-read-chunk-size 16M
