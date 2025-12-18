@@ -1,8 +1,13 @@
 # backup-pi
 
-Connect with:
+Connect with:  
 ```sh
 ssh -L 9898:127.0.0.1:9898 elsahr@192.168.1.81
+```
+
+Unlock:  
+```sh
+sh /opt/unlock.sh
 ```
 
 OAuth Client:  
