@@ -1,14 +1,16 @@
 {
-    "modno": 9,
+    "modno": 24,
     "instance": "backrest",
     "repos": [
         {
             "id": "local-repo",
             "uri": "/mnt/data/restic/local-repo/",
-            "password": "**************",
+            "env": [
+                "RESTIC_PASSWORD_COMMAND='/opt/restic-pass.sh'"
+            ],
             "prunePolicy": {
                 "schedule": {
-                    "maxFrequencyDays": 10,
+                    "maxFrequencyDays": 3,
                     "clock": "CLOCK_LAST_RUN_TIME"
                 },
                 "maxUnusedPercent": 10
@@ -19,20 +21,20 @@
                         "CONDITION_ANY_ERROR"
                     ],
                     "actionHealthchecks": {
-                        "webhookUrl": "https://hc-ping.com/e714f0fb-3e73-4add-afbf-b8860a12f433/fail",
+                        "webhookUrl": "https://hc-ping.com/e714f0fb-3e73-4add-afbf-b8860a12f433",
                         "template": "{{ .Summary }}"
                     }
                 }
             ],
             "checkPolicy": {
                 "schedule": {
-                    "maxFrequencyDays": 10,
+                    "maxFrequencyDays": 3,
                     "clock": "CLOCK_LAST_RUN_TIME"
                 },
                 "readDataSubsetPercent": 0
             },
             "commandPrefix": {},
-            "guid": "dcefb513545ba4af85cce77afb39ec3bf017e98e828e75cc444250173233c1c6"
+            "guid": "6db81f7da23a0688185a9c85f04160b63d53ea9c10373bf2ade5e5f09dad5c3d"
         }
     ],
     "plans": [
@@ -58,13 +60,22 @@
                         "CONDITION_ANY_ERROR"
                     ],
                     "actionHealthchecks": {
-                        "webhookUrl": "https://hc-ping.com/e714f0fb-3e73-4add-afbf-b8860a12f433/fail",
+                        "webhookUrl": "https://hc-ping.com/e714f0fb-3e73-4add-afbf-b8860a12f433",
+                        "template": "{{ .Summary }}"
+                    }
+                },
+                {
+                    "conditions": [
+                        "CONDITION_SNAPSHOT_SUCCESS"
+                    ],
+                    "actionHealthchecks": {
+                        "webhookUrl": "https://hc-ping.com/e714f0fb-3e73-4add-afbf-b8860a12f433",
                         "template": "{{ .Summary }}"
                     }
                 }
             ],
             "schedule": {
-                "cron": "30 * * * *",
+                "cron": "0 * * * *",
                 "clock": "CLOCK_LOCAL"
             }
         }
