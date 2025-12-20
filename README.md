@@ -18,3 +18,10 @@ https://rclone.org/drive/
 
 Backrest setup:  
 https://github.com/garethgeorge/backrest?tab=readme-ov-file#running-on-linux
+
+```mermaid
+graph TD;
+    Takeout-->Drive;
+    Computer-->Drive;
+    Drive-->Pi;
+```
