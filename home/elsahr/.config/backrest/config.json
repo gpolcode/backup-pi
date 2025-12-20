@@ -1,10 +1,12 @@
 {
-    "modno": 24,
+    "modno": 25,
+    "version": 4,
     "instance": "backrest",
     "repos": [
         {
             "id": "local-repo",
             "uri": "/mnt/data/restic/local-repo/",
+            "guid": "6db81f7da23a0688185a9c85f04160b63d53ea9c10373bf2ade5e5f09dad5c3d",
             "env": [
                 "RESTIC_PASSWORD_COMMAND='/opt/restic-pass.sh'"
             ],
@@ -14,6 +16,13 @@
                     "clock": "CLOCK_LAST_RUN_TIME"
                 },
                 "maxUnusedPercent": 10
+            },
+            "checkPolicy": {
+                "schedule": {
+                    "maxFrequencyDays": 3,
+                    "clock": "CLOCK_LAST_RUN_TIME"
+                },
+                "readDataSubsetPercent": 0
             },
             "hooks": [
                 {
@@ -26,15 +35,7 @@
                     }
                 }
             ],
-            "checkPolicy": {
-                "schedule": {
-                    "maxFrequencyDays": 3,
-                    "clock": "CLOCK_LAST_RUN_TIME"
-                },
-                "readDataSubsetPercent": 0
-            },
-            "commandPrefix": {},
-            "guid": "6db81f7da23a0688185a9c85f04160b63d53ea9c10373bf2ade5e5f09dad5c3d"
+            "commandPrefix": {}
         }
     ],
     "plans": [
@@ -44,6 +45,10 @@
             "paths": [
                 "/mnt/data/rclone/gdrive"
             ],
+            "schedule": {
+                "cron": "10 * * * *",
+                "clock": "CLOCK_LOCAL"
+            },
             "retention": {
                 "policyTimeBucketed": {
                     "hourly": 24,
@@ -73,11 +78,7 @@
                         "template": "{{ .Summary }}"
                     }
                 }
-            ],
-            "schedule": {
-                "cron": "0 * * * *",
-                "clock": "CLOCK_LOCAL"
-            }
+            ]
         }
     ],
     "auth": {
@@ -88,7 +89,6 @@
             }
         ]
     },
-    "version": 4,
     "sync": {
         "identity": {
             "keyId": "ecdsa.nmflxpwkRmA9NX7w2vwnuLVPC14GysytJFmVUVZ_N_g"
