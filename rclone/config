@@ -1,7 +1,0 @@
-[gdrive]
-type = drive
-client_id = 436892747004-f3jnjjrvpaofm3b5ssguecdrptbua258.apps.googleusercontent.com
-client_secret = ********
-scope = drive.readonly
-token = *********
-team_drive 

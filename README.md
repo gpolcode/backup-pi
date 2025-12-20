@@ -12,3 +12,9 @@ sh /opt/unlock.sh
 
 OAuth Client:  
 https://console.cloud.google.com/auth/overview?project=rclone-sync-481117
+
+rclone setup:  
+https://rclone.org/drive/
+
+Backrest setup:  
+https://github.com/garethgeorge/backrest?tab=readme-ov-file#running-on-linux
