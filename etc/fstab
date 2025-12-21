@@ -1,1 +1,1 @@
-tmpfs  /mnt/tmpfs  tmpfs  defaults,noatime,size=1G  0  0
+tmpfs  /mnt/tmpfs  tmpfs  defaults,noatime,size=2G  0  0
