@@ -25,3 +25,9 @@ graph TD;
     Computer-->Drive;
     Drive-->Pi;
 ```
+
+Packages:  
+gpg
+pass
+restic
+nano
