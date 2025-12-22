@@ -5,7 +5,7 @@ restic forget --keep-last 50 --keep-hourly 24 --keep-daily 7 --keep-weekly 4 --k
 rc=$?
 
 if [ "$rc" -ne 0 ]; then
-  wget --post-file "$TMP" "$PING_URL/fail" || true
+  wget --post-file "$TMP" "$PING_URL/fail" -O /dev/null || true
 fi
 
 rm -f "$TMP"
