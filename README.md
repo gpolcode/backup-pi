@@ -30,4 +30,3 @@ Packages:
 gpg
 pass
 restic
-nano
