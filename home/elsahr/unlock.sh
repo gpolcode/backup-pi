@@ -1,6 +1,6 @@
 #!/bin/sh
 
-/opt/restic-pass.sh
+./restic-pass.sh
 rclone mount gdrive: /mnt/data/rclone/gdrive \
   --daemon \
   --read-only \

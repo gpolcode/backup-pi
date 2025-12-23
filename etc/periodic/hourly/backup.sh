@@ -1,7 +1,7 @@
 #!/bin/sh
 TMP="$(mktemp)"
 
-restic backup /home/ -v >"$TMP" 2>&1
+restic backup /mnt/data/rclone/gdrive/ -v >"$TMP" 2>&1
 rc=$?
 
 if [ "$rc" -eq 0 ]; then
