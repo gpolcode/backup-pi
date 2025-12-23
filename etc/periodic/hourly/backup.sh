@@ -1,4 +1,5 @@
 #!/bin/sh
+. $HOME/.profile
 TMP="$(mktemp)"
 
 restic backup /mnt/data/rclone/gdrive/ -v >"$TMP" 2>&1

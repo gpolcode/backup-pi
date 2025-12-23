@@ -7,7 +7,7 @@ ssh root@192.168.1.81
 
 Unlock:  
 ```sh
-sh ./unlock.sh
+sh ~/unlock.sh
 ```
 
 OAuth Client:  

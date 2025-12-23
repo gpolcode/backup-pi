@@ -1,4 +1,5 @@
 #!/bin/sh
+. $HOME/.profile
 STATUS="$(zpool status -x 2>&1 || true)"
 
 echo "$STATUS" | grep -q "all pools are healthy" && exit 0

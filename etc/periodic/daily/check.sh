@@ -1,4 +1,5 @@
 #!/bin/sh
+. $HOME/.profile
 TMP="$(mktemp)"
 
 restic check --read-data >"$TMP" 2>&1
