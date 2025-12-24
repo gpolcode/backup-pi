@@ -1,6 +1,8 @@
 #!/bin/sh
 
-./restic-pass.sh
+read -s -p "Enter password: " password
+printf "$password"> /tmp/backup-pass
+
 rclone mount gdrive: /mnt/data/rclone/gdrive \
   --daemon \
   --read-only \
