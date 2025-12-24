@@ -1,0 +1,6 @@
+dtparam=pciex1
+
+hdmi_blanking=1
+dtoverlay=disable-usb
+dtoverlay=disable-wifi
+dtoverlay=disable-bt
