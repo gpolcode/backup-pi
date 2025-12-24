@@ -24,9 +24,7 @@ graph TD;
 ```
 
 Packages:  
-- gpg
-- pass
+- btrfs-progs
 - restic
-- zfs
 - rclone
 - fuse3
