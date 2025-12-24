@@ -1,2 +1,0 @@
-# other content
-LABEL=backup  /mnt/backup  btrfs  defaults,degraded  0 0

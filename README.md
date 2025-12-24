@@ -24,7 +24,13 @@ graph TD;
 ```
 
 Packages:  
-- btrfs-progs
+- zfs
 - restic
 - rclone
 - fuse3
+
+zfs:  
+```sh
+zpool create backup mirror /dev/sda /dev/sdb /dev/sdc /dev/sdd
+zfs set mountpoint=/mnt/backup backup
+```
