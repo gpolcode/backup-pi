@@ -2,6 +2,8 @@
 . $HOME/.profile
 TMP="$(mktemp)"
 
+wget --post-file "$TMP" "$PING_URL/start" -O /dev/null
+
 restic backup /mnt/data/rclone/gdrive/ -v >"$TMP" 2>&1
 rc=$?
 
