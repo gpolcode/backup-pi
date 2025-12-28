@@ -4,7 +4,7 @@ TMP="$(mktemp)"
 
 wget --post-file "$TMP" "$PING_URL/start" -O /dev/null
 
-restic backup /mnt/data/rclone/gdrive/ -v >"$TMP" 2>&1
+restic backup /mnt/data/rclone/gdrive/ -v --retry-lock 10m >"$TMP" 2>&1
 rc=$?
 
 if [ "$rc" -eq 0 ]; then
