@@ -1,7 +1,4 @@
 #!/bin/sh
-
-cd /tmp
-wget https://github.com/gpolcode/backup-pi/archive/refs/heads/main.tar.gz -O main.tar.gz
-tar -xzf main.tar.gz
-cd /tmp/backup-pi-main
-tar -cf - . | (cd / && tar -xpf -)
+wget https://github.com/gpolcode/backup-pi/archive/refs/heads/main.tar.gz -O /tmp/main.tar.gz
+tar -xzf /tmp/main.tar.gz -C /tmp
+tar -C /tmp/backup-pi-main -cf - . | tar -C / -xpf -

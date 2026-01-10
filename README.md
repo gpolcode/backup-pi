@@ -16,6 +16,11 @@ graph TD;
 ```
 Google Takeout does not currently support **automated** export to Google Drive  
 
+## How to deploy
+```sh
+get -qO- https://raw.githubusercontent.com/gpolcode/backup-pi/refs/heads/main/deploy.sh | sh
+```
+
 ## How to setup
 
 Flash the Raspberry Pi Alpine Linux image  
