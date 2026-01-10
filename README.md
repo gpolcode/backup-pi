@@ -18,7 +18,8 @@ Google Takeout does not currently support **automated** export to Google Drive
 
 ## How to setup
 
-Raspberry Pi Alpine Linux and install these packages:  
+Flash the Raspberry Pi Alpine Linux image  
+Install these packages:  
 ```sh
 apk add zfs restic rclone fuse3
 ```
@@ -30,7 +31,7 @@ zfs set mountpoint=/mnt/backup backup
 ```
 
 Setup rclone:  
-https://rclone.org/drive/
+https://rclone.org/drive/  
 https://rclone.org/commands/rclone_config_encryption_set/
 
 Setup restic:  
