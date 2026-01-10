@@ -3,7 +3,7 @@
 ## How to unlock
 ```sh
 ssh root@192.168.1.81
-sh ~/unlock.sh
+sh unlock.sh
 ```
 
 ## Overview
