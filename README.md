@@ -1,10 +1,8 @@
 # backup-pi
 
 ## How to unlock
-Connect with:  
 ```sh
 ssh root@192.168.1.81
-# then use
 sh ~/unlock.sh
 ```
 
@@ -16,26 +14,24 @@ graph TD;
     Computer-->Drive;
     Drive-->Pi;
 ```
+Google Takeout does not currently support **automated** export to Google Drive  
 
 ## How to setup
 
 Raspberry Pi Alpine Linux and install these packages:  
-- zfs
-- restic
-- rclone
-- fuse3
+```sh
+apk add zfs restic rclone fuse3
+```
 
-zfs:  
+Setup zfs raid-1 over 4 drives:  
 ```sh
 zpool create backup mirror /dev/sda /dev/sdb /dev/sdc /dev/sdd
 zfs set mountpoint=/mnt/backup backup
 ```
 
-OAuth Client:  
-https://console.cloud.google.com/auth/overview?project=rclone-sync-481117
-
-rclone setup:  
+Setup rclone:  
 https://rclone.org/drive/
+https://rclone.org/commands/rclone_config_encryption_set/
 
-restic setup:  
+Setup restic:  
 https://restic.readthedocs.io/en/stable/030_preparing_a_new_repo.html#local  
