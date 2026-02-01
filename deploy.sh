@@ -1,5 +1,9 @@
 #!/bin/sh
-umask 077
 wget https://github.com/gpolcode/backup-pi/archive/refs/heads/main.tar.gz -O /tmp/main.tar.gz
 tar -xzf /tmp/main.tar.gz -C /tmp
-tar -C /tmp/backup-pi-main -cf - . | tar -C / -xpf -
+
+SRC=/tmp/backup-pi-main
+find $SRC -type f | while read -r f; do
+    cp -f "$f" "/${f#$SRC/}"
+    chmod 700 "/${f#$SRC/}"
+done
