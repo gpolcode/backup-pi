@@ -1,6 +1,11 @@
 # backup-pi
 
 ## How to unlock
+
+This writes the encryption key for rclone and restic.  
+The key is then stored into an inmemory mounted file.
+This protects against device theft by never storing the encryption key at rest.
+
 ```sh
 ssh root@192.168.1.81
 sh unlock.sh
