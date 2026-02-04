@@ -9,7 +9,7 @@ find "$SRC" -type f | while read -r f; do
 done
 
 if [ -z "$PING_KEY" ]; then
-    read -s -p "Enter healthcheck.io ping_key: " ping_key
-    printf "export PING_KEY='$ping_key'"> /root/backup-pi.env
+    read -s -p "Enter healthcheck.io ping_key: " PING_KEY
+    printf "export PING_KEY='$PING_KEY'"> /root/backup-pi.env
     chmod 400 /tmp/backup-pass
 fi
