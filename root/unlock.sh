@@ -4,7 +4,7 @@ read -s -p "Enter password: " password
 printf "$password"> /tmp/backup-pass
 chmod 400 /tmp/backup-pass
 
-rclone mount gdrive: /mnt/data/rclone/gdrive \
+rclone mount gdrive: $RCLONE_PATH \
   --daemon \
   --read-only \
   --cache-dir /tmp/gdrive \
