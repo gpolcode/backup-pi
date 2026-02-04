@@ -1,5 +1,6 @@
 #!/bin/sh
-. $HOME/.profile
+umask 077
+. "$HOME/.profile"
 STATUS="$(zpool status -x 2>&1 || true)"
 
 echo "$STATUS" | grep -q "all pools are healthy" && exit 0

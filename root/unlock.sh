@@ -1,8 +1,10 @@
 #!/bin/sh
 
+umask 077
 read -s -p "Enter password: " password
-printf "$password"> /tmp/backup-pass
+printf '%s' "$password" > /tmp/backup-pass
 chmod 400 /tmp/backup-pass
+unset password
 
 rclone mount gdrive: $RCLONE_PATH \
   --daemon \
@@ -13,4 +15,3 @@ rclone mount gdrive: $RCLONE_PATH \
   --vfs-read-ahead 128M \
   --vfs-read-chunk-streams 64 \
   --vfs-read-chunk-size 16M
-  

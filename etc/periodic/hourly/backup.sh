@@ -1,15 +1,16 @@
 #!/bin/sh
-. $HOME/.profile
-TMP="$(mktemp)"
-trap 'rm -f "$TMP"' EXIT
+umask 077
+. "$HOME/.profile"
 
-wget --post-file "$TMP" "$PING_URL/start" -O /dev/null
+wget "$PING_URL/start" -O /dev/null
 
 if ! mountpoint -q "$RCLONE_PATH"; then
-  echo "Mount missing: $RCLONE_PATH" >"$TMP"
-  wget --post-file "$TMP" "$PING_URL/fail" -O /dev/null || true
+  wget --post-data "Mount missing: $RCLONE_PATH" "$PING_URL/fail" -O /dev/null || true
   exit 1
 fi
+
+TMP="$(mktemp)"
+trap 'rm -f "$TMP"' EXIT
 
 restic backup "$RCLONE_PATH" -v --retry-lock 10m >"$TMP" 2>&1
 rc=$?

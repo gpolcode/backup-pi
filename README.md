@@ -23,11 +23,13 @@ Google Takeout does not currently support **automated** export to Google Drive
 
 ## How to deploy
 
-Deploy will prompt you for you healthcheck.io ping_key if not set.
+Deploy will prompt you for your healthcheck.io ping_key if not set.
 
 ```sh
 wget -qO- https://raw.githubusercontent.com/gpolcode/backup-pi/refs/heads/main/deploy.sh | sh
 ```
+
+Note: This disables USB/WiFi/BT and enables PCIe x1.   
 
 ## How to setup
 
@@ -37,7 +39,7 @@ Install these packages:
 apk add zfs restic rclone fuse3
 ```
 
-Setup zfs raid-1 over 4 drives:  
+Setup zfs 4-way mirror over 4 drives:  
 ```sh
 zpool create backup mirror /dev/sda /dev/sdb /dev/sdc /dev/sdd
 zfs set mountpoint=/mnt/backup backup
