@@ -22,6 +22,9 @@ graph TD;
 Google Takeout does not currently support **automated** export to Google Drive  
 
 ## How to deploy
+
+Deploy will prompt you for you healthcheck.io ping_key if not set.
+
 ```sh
 wget -qO- https://raw.githubusercontent.com/gpolcode/backup-pi/refs/heads/main/deploy.sh | sh
 ```
