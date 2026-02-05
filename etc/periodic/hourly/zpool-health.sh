@@ -3,6 +3,6 @@
 
 output="$(zpool status -x 2>&1)"
 
-if [ "$output" -ne "all pools are healthy" ]; then
+if [ "$output" != "all pools are healthy" ]; then
   wget --post-data "$output" "$PING_URL/fail" -O /dev/null || true
 fi
