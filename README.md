@@ -3,7 +3,7 @@
 ## How to unlock
 
 This writes the encryption key for rclone and restic.  
-The key is then stored into an inmemory mounted file.
+The key is then stored into an inmemory mounted file.  
 This protects against device theft by never storing the encryption key at rest.
 
 ```sh
