@@ -17,4 +17,4 @@ if [ ! -z "$snapshot" ]; then
   exit 1
 fi
 
-wget "$PING_URL" -O /dev/null || true
+wget --post-data "$output" "$PING_URL" -O /dev/null || true
