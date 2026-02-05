@@ -12,5 +12,4 @@ done
 if [ -z "$PING_URL" ]; then
     read -s -p "Enter healthcheck.io ping_key: " PING_KEY
     printf "export PING_URL='https://hc-ping.com/$PING_KEY'"> /root/backup-pi.env
-    . ~/.profile
 fi
