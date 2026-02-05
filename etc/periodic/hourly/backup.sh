@@ -1,16 +1,13 @@
 #!/bin/sh
-umask 077
 . "$HOME/.profile"
-TMP="$(mktemp)"
-trap 'rm -f "$TMP"' EXIT
 
-wget "$PING_URL/start" -O /dev/null
+wget "$PING_URL/start" -O /dev/null || true
 
-restic backup "$RCLONE_PATH" -v --retry-lock 10m >"$TMP" 2>&1
+output="$(restic backup "$RCLONE_PATH" -v --retry-lock 10m 2>&1)"
 rc=$?
 
 if [ "$rc" -ne 0 ]; then
-  wget --post-file "$TMP" "$PING_URL/fail" -O /dev/null || true
+  wget --post-data "$output" "$PING_URL/fail" -O /dev/null || true
   exit 1
 fi
 
@@ -20,4 +17,4 @@ if [ ! -z "$snapshot" ]; then
   exit 1
 fi
 
-wget --post-file "$TMP" "$PING_URL" -O /dev/null
+wget "$PING_URL" -O /dev/null || true

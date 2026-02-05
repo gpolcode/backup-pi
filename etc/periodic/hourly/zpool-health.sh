@@ -1,8 +1,8 @@
 #!/bin/sh
-umask 077
 . "$HOME/.profile"
-STATUS="$(zpool status -x 2>&1 || true)"
 
-echo "$STATUS" | grep -q "all pools are healthy" && exit 0
+output="$(zpool status -x 2>&1)"
 
-wget --post-data "$STATUS" "$PING_URL/fail" -O /dev/null || true
+if [ "$output" -ne "all pools are healthy" ]; then
+  wget --post-data "$output" "$PING_URL/fail" -O /dev/null || true
+fi
