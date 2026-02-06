@@ -36,7 +36,7 @@ Note: This disables USB/WiFi/BT and enables PCIe x1.
 Flash the Raspberry Pi Alpine Linux image  
 Install these packages:  
 ```sh
-apk add zfs restic rclone fuse3
+apk add zfs restic rclone fuse3 smartmontools
 ```
 
 Setup zfs 4-way mirror over 4 drives:  
