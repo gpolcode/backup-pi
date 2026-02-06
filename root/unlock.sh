@@ -12,8 +12,8 @@ rclone mount gdrive: "$RCLONE_PATH" \
   --cache-dir /tmp/gdrive \
   --vfs-cache-mode full \
   --vfs-cache-max-size 1G \
-  --vfs-cache-max-age 10m \
-  --dir-cache-time 10m \
+  --vfs-cache-max-age 2h \
+  --dir-cache-time 2h \
   --attr-timeout 5s \
   --poll-interval 1m \
   --vfs-refresh \
