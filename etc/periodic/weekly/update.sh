@@ -1,14 +1,11 @@
 #!/bin/sh
-. "$HOME/.profile"
+. /root/enable-logging.sh
 
-output="$(
-  apk update 2>&1 &&
-  apk upgrade 2>&1
-)"
-rc=$?
+if ! apk update; then
+  exit 1
+fi
 
-if [ "$rc" -ne 0 ]; then
-  wget --post-data "$output" "$PING_URL/fail" -O /dev/null || true
+if ! apk upgrade; then
   exit 1
 fi
 

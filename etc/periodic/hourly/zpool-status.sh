@@ -1,8 +1,8 @@
 #!/bin/sh
-. "$HOME/.profile"
+. /root/enable-logging.sh
 
-output="$(zpool status -x 2>&1)"
-
-if [ "$output" != "all pools are healthy" ]; then
-  wget --post-data "$output" "$PING_URL/fail" -O /dev/null || true
+status="$(zpool status -x 2>&1)"
+if [ "$status" != "all pools are healthy" ]; then
+  printf '%s' "$status"
+  exit 1
 fi

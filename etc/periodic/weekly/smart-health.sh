@@ -1,13 +1,6 @@
 #!/bin/sh
-. "$HOME/.profile"
+. /root/enable-logging.sh
 
-output="$(
-  for disk in $ZPOOL_DISKS; do
-    smartctl -a "$disk" 2>&1 || exit 1
-  done
-)"
-rc=$?
-
-if [ "$rc" -ne 0 ]; then
-  wget --post-data "$output" "$PING_URL/fail" -O /dev/null || true
-fi
+for disk in $ZPOOL_DISKS; do
+  smartctl -a "$disk" || exit 1
+done
