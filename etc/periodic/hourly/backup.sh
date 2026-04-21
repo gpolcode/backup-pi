@@ -1,7 +1,7 @@
 #!/bin/sh
 . /root/enable-logging.sh
 
-if ! restic backup "$RCLONE_PATH" -v --retry-lock 10m; then
+if ! restic backup "$RCLONE_PATH" -v --retry-lock 15m; then
   exit 1
 fi
 
