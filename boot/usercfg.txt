@@ -1,4 +1,5 @@
 dtparam=pciex1
+dtoverlay=pcie-32bit-dma-pi5
 
 hdmi_blanking=1
 dtoverlay=disable-usb
