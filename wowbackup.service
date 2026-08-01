@@ -1,0 +1,9 @@
+[Unit]
+Description=Rclone backup sync (git mirrors + configured source/destination map)
+
+[Service]
+Type=oneshot
+ExecStart=/home/elsahr/backup-sync.sh
+
+[Install]
+WantedBy=default.target
