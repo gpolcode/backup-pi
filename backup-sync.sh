@@ -2,8 +2,8 @@
 #
 # backup-sync.sh
 #
-# 1. Mirror every GitHub repo owned by GITHUB_OWNER into a local directory
-#    (clone if missing, otherwise fetch + prune deleted refs, then gc).
+# 1. Clone every GitHub repo owned by GITHUB_OWNER into a local directory
+#    (clone if missing, otherwise fetch + prune deleted branches, then gc).
 # 2. rclone sync a preconfigured map of source -> destination pairs.
 #
 # Run from a systemd oneshot service: any failure exits non-zero so
@@ -43,7 +43,7 @@ mirror_repos() {
       git -C "$dest" fetch --prune || fail "fetch failed: $name"
     else
       printf 'Cloning %s\n' "$name"
-      git clone --mirror "$url" "$dest" || fail "clone failed: $name"
+      git clone "$url" "$dest" || fail "clone failed: $name"
     fi
 
     git -C "$dest" gc --prune=now --quiet || fail "gc failed: $name"
