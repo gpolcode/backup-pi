@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 #
 # backup-sync.sh
 #
@@ -9,19 +9,17 @@
 # Run from a systemd oneshot service: any failure exits non-zero so
 # systemd marks the unit failed and fires its OnFailure= alert.
 #
-set -eu
+set -euo pipefail
 
 RCLONE=/home/linuxbrew/.linuxbrew/bin/rclone
 MIRROR_DIR=/home/elsahr/backup/github
 
 GITHUB_OWNER=gpolcode
 
-# One "SRC|DST" pair per line. SRC/DST are anything rclone understands
-# (local path or remote:path) and may contain spaces.
-SYNC_MAP="
-/home/elsahr/Games/battlenet/drive_c/Program Files (x86)/World of Warcraft/_retail_/WTF|gdrive:/Persönliche Dokumente/IT/Configs/World of Warcraft/World of Warcraft/
-${MIRROR_DIR}|gdrive:/Persönliche Dokumente/IT/Backups/github
-"
+declare -A SYNC_MAP=(
+  ["/home/elsahr/Games/battlenet/drive_c/Program Files (x86)/World of Warcraft/_retail_/WTF"]="gdrive:/Persönliche Dokumente/IT/Configs/World of Warcraft/World of Warcraft/"
+  ["$MIRROR_DIR"]="gdrive:/Persönliche Dokumente/IT/Backups/github"
+)
 
 fail() {
   printf 'backup-sync: %s\n' "$*" >&2
@@ -31,11 +29,12 @@ fail() {
 mirror_repos() {
   mkdir -p "$MIRROR_DIR" || fail "cannot create $MIRROR_DIR"
 
-  repos=$(gh repo list "$GITHUB_OWNER" --limit 1000 --json sshUrl -q '.[].sshUrl') \
+  local repos=()
+  mapfile -t repos < <(gh repo list "$GITHUB_OWNER" --limit 1000 --json sshUrl -q '.[].sshUrl') \
     || fail "gh repo list failed"
 
-  # URLs contain no whitespace, so default word-splitting is safe here.
-  for url in $repos; do
+  local url name dest
+  for url in "${repos[@]}"; do
     name=$(basename "$url" .git)
     dest="$MIRROR_DIR/$name.git"
 
@@ -52,22 +51,12 @@ mirror_repos() {
 }
 
 sync_all() {
-  # IFS=newline so each SYNC_MAP line stays whole and paths may contain spaces.
-  old_ifs=$IFS
-  IFS='
-'
-  for pair in $SYNC_MAP; do
-    [ -n "$pair" ] || continue
-    src=${pair%%|*}
-    dst=${pair#*|}
-
+  local src dst
+  for src in "${!SYNC_MAP[@]}"; do
+    dst=${SYNC_MAP[$src]}
     printf 'Syncing %s -> %s\n' "$src" "$dst"
-    IFS=$old_ifs
     "$RCLONE" sync "$src" "$dst" -v || fail "sync failed: $src -> $dst"
-    IFS='
-'
   done
-  IFS=$old_ifs
 }
 
 mirror_repos
