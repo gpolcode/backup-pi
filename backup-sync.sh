@@ -12,7 +12,7 @@
 set -euo pipefail
 
 RCLONE=/home/linuxbrew/.linuxbrew/bin/rclone
-MIRROR_DIR=/home/elsahr/backup/github
+MIRROR_DIR=/home/elsahr/Documents/github
 
 GITHUB_OWNER=gpolcode
 
