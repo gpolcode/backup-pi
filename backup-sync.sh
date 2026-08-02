@@ -18,7 +18,7 @@ GITHUB_OWNER=gpolcode
 
 declare -A SYNC_MAP=(
   ["/home/elsahr/Games/battlenet/drive_c/Program Files (x86)/World of Warcraft/_retail_/WTF"]="gdrive:/Persönliche Dokumente/IT/Configs/World of Warcraft/World of Warcraft/"
-  ["$MIRROR_DIR"]="gdrive:/Persönliche Dokumente/IT/Backups/github"
+  ["$MIRROR_DIR"]="gdrive:/Persönliche Dokumente/IT/github"
 )
 
 fail() {
@@ -36,7 +36,7 @@ mirror_repos() {
   local url name dest
   for url in "${repos[@]}"; do
     name=$(basename "$url" .git)
-    dest="$MIRROR_DIR/$name.git"
+    dest="$MIRROR_DIR/$name"
 
     if [ -d "$dest" ]; then
       printf 'Updating %s\n' "$name"
