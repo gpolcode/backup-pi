@@ -11,10 +11,6 @@
 #
 set -eu
 
-########################################
-# Configuration
-########################################
-
 RCLONE=/home/linuxbrew/.linuxbrew/bin/rclone
 MIRROR_DIR=/home/elsahr/backup/github
 
@@ -26,8 +22,6 @@ SYNC_MAP="
 /home/elsahr/Games/battlenet/drive_c/Program Files (x86)/World of Warcraft/_retail_/WTF|gdrive:/Persönliche Dokumente/IT/Configs/World of Warcraft/World of Warcraft/
 ${MIRROR_DIR}|gdrive:/Persönliche Dokumente/IT/Backups/github
 "
-
-########################################
 
 fail() {
   printf 'backup-sync: %s\n' "$*" >&2
