@@ -1,9 +1,11 @@
 [Unit]
-Description=Rclone backup sync (git mirrors + configured source/destination map)
+Description=Backup sync
 
 [Service]
 Type=oneshot
-ExecStart=/home/elsahr/backup-sync.sh
+ExecStartPre=-/usr/bin/curl -fsS -m 10 --retry 5 -o /dev/null https://hc-ping.com/c53d3d45-b49b-4711-8914-d16587716ad6/start
+ExecStart=/home/elsahr/backup-pi/backup-sync.sh
+ExecStopPost=-/bin/sh -c '/usr/bin/curl -fsS -m 10 --retry 5 -o /dev/null https://hc-ping.com/c53d3d45-b49b-4711-8914-d16587716ad6/$EXIT_STATUS'
 
 [Install]
 WantedBy=default.target
