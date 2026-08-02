@@ -38,20 +38,15 @@ mirror_repos() {
     name=$(basename "$url" .git)
     dest="$MIRROR_DIR/$name"
 
-    if [ -d "$dest" ] && ! git --git-dir="$dest" rev-parse --is-bare-repository >/dev/null 2>&1; then
-      printf 'Skipping %s (%s is a working checkout, not a bare mirror)\n' "$name" "$dest"
-      continue
-    fi
-
     if [ -d "$dest" ]; then
       printf 'Updating %s\n' "$name"
-      git --git-dir="$dest" remote update --prune || fail "fetch failed: $name"
+      git -C "$dest" fetch --prune || fail "fetch failed: $name"
     else
       printf 'Cloning %s\n' "$name"
       git clone --mirror "$url" "$dest" || fail "clone failed: $name"
     fi
 
-    git --git-dir="$dest" gc --prune=now --quiet || fail "gc failed: $name"
+    git -C "$dest" gc --prune=now --quiet || fail "gc failed: $name"
   done
 }
 
